@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./main.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="popup-container">
+            <div class="popup-main">
+                <label for="field-name">Name</label>
+                <input type="text" id="field-name">
+                <label for="field-phone">Phone</label>
+                <input type="text" id="field-phone">
+                <label for="field-email">email</label>
+                <input type="text" id="field-email">
+                <button onclick="onCreate()">Create</button>
+            </div>
+        </div>
+        <div class="edit-container">
+            <div class="edit-main">
+                <label for="field-name">Name</label>
+                <input type="text" id="field-nameEdit">
+                <label for="field-phone">Phone</label>
+                <input type="text" id="field-phoneEdit">
+                <label for="field-email">email</label>
+                <input type="text" id="field-emailEdit">
+                <button class="editBtn">Edit</button>
+            </div>
+        </div>
+        <div class="header">
+            <button id="create-btn">Create</button>
+        </div>
+        <!-- list card -->
+        <div class="cards">
+            <div class="card">
+                <div class="card-item">
+                    <img src="./assets/img/icon/contact.svg" alt="">
+                    <span id="name">Huy Nam</span>
+                </div>
+                <div class="card-item">
+                    <img src="./assets/img/icon/contact.svg" alt="">
+                    <span id="phone">+0123123813</span>
+                </div>
+                <div class="card-item">
+                    <img src="./assets/img/icon/email.svg" alt="">
+                    <span id="mail">example@gmail.com</span>
+                </div>
+                <div class="action">
+                    <img id="edit" src="./assets/img/icon/edit.svg" alt="">
+                    <img id="delete" src="./assets/img/icon/delete.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./main.js"></script>
+</html>
