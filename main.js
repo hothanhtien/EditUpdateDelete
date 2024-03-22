@@ -18,7 +18,7 @@ if (localStorage.getItem('contact')) {
 
 var cardContainer = document.querySelector('.cards')
 function render() {
-    let element = contact.map(function(item, index) {
+    let element = contact.map(function (item, index) {
         return `
         <div class="card">
                 <div class="card-item">
@@ -56,39 +56,52 @@ var popupp = document.querySelector('.popup-container');
 // console.log(createBtn)
 
 
-createBtn.addEventListener('click', function() {
+createBtn.addEventListener('click', function () {
     popupp.classList.toggle('active')
 })
 
-popupp.addEventListener('click', function(event) {
+popupp.addEventListener('click', function (event) {
     // console.log(event);
     popupp.classList.toggle('active')
-    document.getElementById('field-name').value ="";
-    document.getElementById('field-phone').value ="";
-    document.getElementById('field-email').value ="";
+    document.getElementById('field-name').value = "";
+    document.getElementById('field-phone').value = "";
+    document.getElementById('field-email').value = "";
 })
 
 var popupMain = document.querySelector('.popup-main');
 
-popupMain.addEventListener('click', function(event) {
+popupMain.addEventListener('click', function (event) {
     event.stopPropagation();
 })
 
+var shouldClosePopup = false;
 function onCreate() {
     console.log('okokoko')
+    popupp.classList.remove('active')
     var name = document.getElementById('field-name').value
-    var phone =  document.getElementById('field-phone').value
-    var email =  document.getElementById('field-email').value
-    // console.log('nè', name, phone)
-    contact.push({
-        name,
-        phone,
-        email
-    })
+    var phone = document.getElementById('field-phone').value
+    var email = document.getElementById('field-email').value
+    var dem = 0;
+    if (name == '') dem++;
+    if (phone == '') dem++;
+    if (email == '') dem++;
+    console.log('dem', dem);
+    if (dem != 0) {
+        alert('Please fill in all fields');
+        popupp.classList.add('active'); 
+    }
+    else {
+        contact.push({
+            name,
+            phone,
+            email
+        })
+    
+        localStorage.setItem('contact', JSON.stringify(contact));
+    
+        render();
+    }
 
-    localStorage.setItem('contact', JSON.stringify(contact));
-
-    render();
 }
 
 render();
@@ -107,14 +120,14 @@ var editContainer = document.querySelector('.edit-container');
 var editMain = document.querySelector('.edit-main');
 
 
-editContainer.addEventListener('click', function(event) {
+editContainer.addEventListener('click', function (event) {
     editContainer.classList.toggle('active')
-    document.getElementById('field-nameEdit').value ="";
-    document.getElementById('field-phoneEdit').value ="";
-    document.getElementById('field-emailEdit').value ="";
+    document.getElementById('field-nameEdit').value = "";
+    document.getElementById('field-phoneEdit').value = "";
+    document.getElementById('field-emailEdit').value = "";
 })
 
-editMain.addEventListener('click', function(event) {
+editMain.addEventListener('click', function (event) {
     event.stopPropagation();
 })
 
@@ -128,12 +141,12 @@ function editt(id) {
 
 let editBtnSubmit = document.querySelector('.editBtn');
 
-editBtnSubmit.addEventListener('click', function() {
+editBtnSubmit.addEventListener('click', function () {
     var name1 = document.getElementById('field-nameEdit').value
-    var phone1 =  document.getElementById('field-phoneEdit').value
-    var mail1 =  document.getElementById('field-emailEdit').value
-    
-    
+    var phone1 = document.getElementById('field-phoneEdit').value
+    var mail1 = document.getElementById('field-emailEdit').value
+
+
     contact[idd].name = name1;
     contact[idd].phone = phone1;
     contact[idd].email = mail1;
@@ -143,6 +156,7 @@ editBtnSubmit.addEventListener('click', function() {
 
     console.log('12345')
     render();
+    editContainer.classList.remove('active')
 })
 
 
